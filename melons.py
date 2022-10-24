@@ -12,11 +12,6 @@ class Melon:
     def __repr__(self):
         return(f"<Melon: {self.melon_id},{self.common_name}>")     
 
-    def price_str(self): 
-        return f"${self.price:2f}"
-
-    def get_by_id(melon_id):
-        return melon_dict[melon_id]
 
 def get_all():
     return list(melon_dict.values())
@@ -32,6 +27,11 @@ with open("melons.csv") as csvfile:
         melon_dict[melon_id]= melon
 
 
+def price_str(self): 
+    return f"${self.price:2f}"
+
+def get_by_id(melon_id):
+    return melon_dict[melon_id]
 
 print(melon_dict)
 
