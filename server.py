@@ -15,7 +15,8 @@ def melonsPage():
 
 @app.route('/melon/<melon_id>')
 def individualPage(melon_id):
-    return render_template("individualMelon.html")
+    melon = melon.get_by_id(melon_id)
+    return render_template("individualMelon.html", melon = melon)
 
 @app.route('/cart')
 def cartPage():
