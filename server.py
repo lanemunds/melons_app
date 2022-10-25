@@ -7,15 +7,20 @@ app.jinja_env.undefined = jinja2.StrictUndefined
 @app.route('/')
 def homepage():
     return render_template("base.html")
+
 @app.route('/melons')
 def melonsPage():
-    return render_template("melons.html")
+    melon_list = melons.get_all()
+    return render_template("melons.html", melon_list = melon_list)
+
 @app.route('/melon/<melon_id>')
 def individualPage(melon_id):
     return render_template("individualMelon.html")
+
 @app.route('/cart')
 def cartPage():
     return render_template("cart.html")
+
 @app.route('/add_to_cart/<melon_id>')
 def add_to_cart(melon_id):
     return f"{melon_id} added to cart"
