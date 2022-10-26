@@ -1,15 +1,23 @@
-
-    {% extends 'base.html' %}
-    {%block body%}
-    <div id = "melon-list">
-{% for melon in melon_list %}
-<div class="card text-center">
-    <img class= "melon-image" src="{{melon.image_url}}" alt="melon pix">
-    <h5><a href = "{{url_for('individualMelons', melon_id = melon.melon_id)}}"> {{melon.common_name}}</a></h5>
+{% extends 'base.html' %} {%block body%}
+<div id="melon-list">
+  {% for melon in melon_list %}
+  <div class="card text-center">
+    <a href="{{url_for('individualMelons', melon_id = melon.melon_id)}}"
+      ><img class="melon-image" src="{{melon.image_url}}" alt="melon pix"
+    /></a>
+    <h5>
+      <a href="{{url_for('individualMelons', melon_id = melon.melon_id)}}">
+        {{melon.common_name}}</a
+      >
+    </h5>
     {{melon.price_str()}}
-
+  </div>
+  <a href="/m">
+    <img
+      id="sticker"
+      src="https://i.etsystatic.com/20023820/r/il/0eaa02/3359986728/il_794xN.3359986728_gqim.jpg"
+  /></a>
+  <h2 id="buy">BUY MY MELONS</h2>
+  {%endfor%}
 </div>
-{%endfor%}
-    </div>
 {%endblock%}
-    

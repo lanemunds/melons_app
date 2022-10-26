@@ -11,7 +11,10 @@ app.jinja_env.undefined = jinja2.StrictUndefined
 
 @app.route('/')
 def homepage():
-    return render_template("base.html")
+    return render_template("home.html")
+@app.route('/m')
+def samJackson():
+    return render_template("404.html")
 
 @app.route('/melons')
 def melonsPage():
@@ -25,6 +28,8 @@ def individualMelons(melon_id):
 
 @app.route('/cart')
 def cartPage():
+    if 'username' not in session:
+        return redirect('/login')
     order_total=0
     cart_melons = []
     cart = session.get("cart", {})
@@ -43,6 +48,8 @@ def cartPage():
 
 @app.route('/add_to_cart/<melon_id>')
 def add_to_cart(melon_id):
+    if 'username' not in session:
+        return redirect('/login')
     if 'cart' not in session:
         session['cart']={}
     cart = session['cart']
@@ -72,7 +79,7 @@ def login():
             return redirect("/login")
         
         session["username"] = user["username"]
-        flash("Logged in.")
+        flash("You're Logged in")
         return redirect("/melons")
     return render_template("login.html", form=form)
 
@@ -80,8 +87,14 @@ def login():
 @app.route("/logout")
 def logout():
     del session['username']
-    flash("logged out")
+    flash("You're logged out")
     return redirect("/login")
+
+@app.errorhandler(404)
+def error_404(e):
+    return render_template("404.html")
+
+
 
 if __name__ == "__main__":
     app.env = "development"

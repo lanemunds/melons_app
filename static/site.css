@@ -6,3 +6,18 @@
     display: flex;
     flex-wrap: wrap;
 }
+#sticker{
+    position: fixed;
+    right: 10px;
+    height: 350px;
+    width: 200px;
+    top: 100px;
+}
+#buy{
+    position: fixed;
+    right: 10px;
+    top: 60px;
+    background-color: black;
+    color: white;
+    font-size: 28px;
+}
